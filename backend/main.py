@@ -14,28 +14,46 @@ llm = Llama(
     verbose=True
 )
 
-print("\nModelo carregado! Testando como Mestre de RPG...\n")
+mensagens = []
 
-prompt = """<|system|>
+promptInit = " rie um cenario inicial classico de RPG, e pergunte qual o próximo passo"
+
+promptBase = """
+<|system|>
 Você é um Mestre de RPG épico e imersivo. Responda sempre em português, narrativo, criativo e descritivo. Nunca controle o jogador.
 <|end|>
+"""
 
-<|user|>
-Acordo numa floresta sombria à noite, com chuva fina e um uivo ao longe. O que faço primeiro?
-<|end|>
+def sendMessageForIA(message):
+    
+    prompt = f"""{promptBase}
+        <|user|> {message} <|end|>
+        <|assistant|>"""
+    
+    output = llm(
+        prompt,
+        max_tokens=300,
+        temperature=0.85,
+        top_p=0.95,
+        stop=["<|user|>", "<|end|>"],
+        echo=False
+    )
+    return output
 
-<|assistant|>"""
-
-output = llm(
-    prompt,
-    max_tokens=300,
-    temperature=0.85,
-    top_p=0.95,
-    stop=["<|user|>", "<|end|>"],
-    echo=False
-)
-
-print("Resposta do Mestre:")
-print(output['choices'][0]['text'].strip())
+def mostrarRespostaIA(res):
+    print("Resposta do Mestre:")
+    print(res['choices'][0]['text'].strip())
+    
+def main():
+    print("\nModelo carregado! Testando como Mestre de RPG...\n")
+    mostrarRespostaIA(sendMessageForIA(promptInit))
+    message = ""
+    while message != "fim":
+        message = input("Digite a Mensagem:");
+        if message == "fim":
+            break;
+        mostrarRespostaIA(sendMessageForIA(message))
+        
+main()
 
 # Olhe o final do terminal pra ver velocidade (tokens por segundo na linha "eval time")
