@@ -1,4 +1,4 @@
-from src import bot, translate
+from app import bot, translate
 
 worldStyle = "World style: "
 characterRole = "Tone: "
