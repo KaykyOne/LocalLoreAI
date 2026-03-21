@@ -11,8 +11,8 @@ llm = Llama(
     model_path=model_path,
     n_ctx=8192,          # contexto grande pra RPG
     n_gpu_layers=0,      # 0 = CPU only
-    n_threads=8,        # threads do seu Ryzen 5 5500U
-    n_batch=512,
+    n_threads=12,        # threads do seu Ryzen 5 5500U
+    n_batch=256,
     verbose=True
 )
 
@@ -32,35 +32,68 @@ Your response must be less than 200 words.
 Write a new, original fantasy scene now.
 """
 
-def sendMessageForIA(message):
-    
-    mensagens = []
-    mensagens = getHistory()
+promptBasePTBR = """
+Developer: Você é um narrador de fantasia em terceira pessoa.
 
+Responda SEMPRE em português brasileiro.
+
+Escreva de forma clara e cinematográfica. Foque na atmosfera, no cenário e no que está acontecendo ao redor dos personagens. Não fale diretamente com o jogador e não use a palavra "você".
+
+Não descreva o que o personagem principal está pensando ou decidindo.
+
+Comece a cena já no meio de uma ação empolgante ou misteriosa. Construa tensão ou crie um senso de mistério.
+
+Termine a cena sem concluir a história; deixe algo em aberto. Ao final, forneça um gancho claro para que o jogador responda.
+
+Sua resposta deve ter menos de 200 palavras.
+
+Agora escreva uma nova cena de fantasia original.
+Nunca use inglês. Nunca fale diretamente com o jogador. Nunca use segunda pessoa.
+"""
+
+def _build_history_prompt(mensagens):
     historico = ""
-    if len(mensagens) > 0:
-        for mes in mensagens:
-            historico += f"<|{mes["role"]}|> {mes["value"]} <|end|>"
-            
+    for mes in mensagens:
+        historico += f"<|{mes['role']}|> {mes['value']} <|end|>"
+    return historico
+
+
+def sendMessageForIAStream(message):
+
+    mensagens = getHistory()
+    historico = _build_history_prompt(mensagens)
+
     prompt = f"""
-        {historico}
-        <|user|> {message} <|end|>
-        <|assistant|>"""
-    
-    output = llm(
+{historico}
+<|user|> {message} <|end|>
+<|assistant|>"""
+
+    stream = llm(
         prompt,
         max_tokens=300,
         temperature=0.6,
         top_p=0.9,
         stop=["<|user|>", "<|end|>"],
-        echo=False
+        echo=False,
+        stream=True
     )
-    
-    response = output['choices'][0]['text'].strip()
-    
-    mensagens.append({"role": "user", "value" : message})
-    mensagens.append({"role": "assistant", "value": f"{response}"})
+
+    response = ""
+
+    for chunk in stream:
+        token = chunk["choices"][0]["text"]
+        response += token
+        yield token
+
+    mensagens.append({"role": "user", "value": message})
+    mensagens.append({"role": "assistant", "value": response})
     saveHistory(mensagens)
+
+
+def sendMessageForIA(message):
+    response = ""
+    for token in sendMessageForIAStream(message):
+        response += token
     return response
 
 def mostrarRespostaIA(res):
@@ -78,8 +111,7 @@ def getHistory():
     except:
         return []
     
-def createWord(trats):
-      
+def createWordStream(trats):
     mensagens = []
     prompt = f"<|system|> {promptBase}"
     for trat in trats:
@@ -90,15 +122,38 @@ def createWord(trats):
     saveHistory(mensagens)
     output = llm(
         prompt,
-        max_tokens=500,
+        max_tokens=300,
         temperature=0.6,
         top_p=0.9,
         stop=["<|user|>", "<|end|>"],
-        echo=False
+        echo=False,
+        stream=True
     )
     
-    response = output['choices'][0]['text'].strip()
+    response = ""
+    for chunk in output:
+        token = chunk["choices"][0]["text"]
+        response += token
+        yield token
     
     mensagens.append({"role": "assistant", "value": f"{response}"})
     saveHistory(mensagens)
+
+
+def createWord(trats):
+    response = ""
+    for token in createWordStream(trats):
+        response += token
     return response
+    
+def Bot():
+    class _BotAPI:
+        sendMessageForIA = staticmethod(sendMessageForIA)
+        sendMessageForIAStream = staticmethod(sendMessageForIAStream)
+        createWord = staticmethod(createWord)
+        createWordStream = staticmethod(createWordStream)
+        getHistory = staticmethod(getHistory)
+        saveHistory = staticmethod(saveHistory)
+        mostrarRespostaIA = staticmethod(mostrarRespostaIA)
+
+    return _BotAPI()
