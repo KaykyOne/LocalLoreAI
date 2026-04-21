@@ -1,0 +1,11 @@
+{
+  "name": "localloreai-backend-node",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch --experimental-strip-types src/server.ts",
+    "start": "node --experimental-strip-types src/server.ts",
+    "typecheck": "..\\front\\node_modules\\.bin\\tsc.cmd --project tsconfig.json --noEmit"
+  }
+}

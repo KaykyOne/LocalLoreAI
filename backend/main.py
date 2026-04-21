@@ -1,38 +1,36 @@
-from src import bot, translate
+from app.service import bot
+from app.service import translate
 
-worldStyle = "World style: "
-characterRole = "Tone: "
-characterName = "Protagonist: "
-characterKeyTrait = ""
+def read_stream(stream):
+    response = ""
+    for token in stream:
+        print(token, end="", flush=True)
+        response += token
+    print("\n")
+    return response
 
 def main():
     print("\nModelo carregado! Testando como Mestre de RPG...\n\n")
-    
-    worldStyle = f"World style: {input("Escreva como você gostária que fosse o mundo do seu RPG, algo sádio? escuro? ou um mundo classico e feliz de RPG:")}"
-    characterName = f"Protagonist Name: {input("Escreva o Nome do seu personagem:")}"
-    characterRole = f"Tone of Protagonist: {input("Escreva qual classe de pergonagem você quer, um guerreiro estoico? um necromante, decida e se divirta:")}"
-    characterKeyTrait = f"Protagonist Key Traits: {input("Escreva os traços do seu personagem, ele é forte? é o honrado desse mundo? só o tempo e você conseguira decidir:")}"
-    
+
+    worldStyle = f"World style: {input('Escreva como você gostaria que fosse o mundo do seu RPG:')}"
+    characterName = f"Protagonist Name: {input('Escreva o nome do seu personagem:')}"
+    characterRole = f"Tone of Protagonist: {input('Escreva a classe/tom do seu personagem:')}"
+    characterKeyTrait = f"Protagonist Key Traits: {input('Escreva os traços do seu personagem:')}"
+
     trats = [worldStyle, characterRole, characterName, characterKeyTrait]
-    tratsTranslate = []
-    
-    for trat in trats:
-        newTrat = translate.translateForEnglish(trat)
-        tratsTranslate.append(newTrat)
-    
-    res = bot.createWord(tratsTranslate) 
-    
-    resTraduzido = translate.translateForPortuguese(res)
-    bot.mostrarRespostaIA(resTraduzido)
-    message = ""    
+
+    print("\nResposta do Mestre:\n")
+    read_stream(bot.createWordStream(trats))
+
+    message = ""
     while message != "fim":
-        message = input("Digite a Mensagem:");
-        
+        message = input("Digite a mensagem: ")
+
         if message == "fim":
-            break;
+            break
         
-        res = bot.sendMessageForIA(message)
-        resTraduzido = translate.translateForPortuguese(res)
-        bot.mostrarRespostaIA(resTraduzido)
-        
+        print("\nResposta do Mestre:\n")
+        read_stream(bot.sendMessageForIA(trats))
+
+
 main()

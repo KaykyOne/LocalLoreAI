@@ -1,0 +1,42 @@
+{
+  "sessionId": "session-1776795284659-2ef157cf",
+  "title": "Roberto Carlos · Cidade moderna comum, rotina de trabalho, rela",
+  "world": {
+    "traits": [
+      "Mundo: Cidade moderna comum, rotina de trabalho, relacoes pessoais, problemas financeiros, transito, bairros vivos e tensoes cotidianas.",
+      "Protagonista: Roberto Carlos",
+      "Papel: Pessoa comum tentando equilibrar trabalho, familia, contas e escolhas que comecam a sair do controle.",
+      "Tracos: Empatica, cansada, observadora, teimosa quando pressionada, boa em esconder o que sente.",
+      "Objetivo inicial: Atravessar uma semana decisiva sem perder emprego, relacionamento e uma chance inesperada de mudar de vida."
+    ],
+    "createdAt": "2026-04-21T18:14:44.661Z"
+  },
+  "memory": {
+    "campaignSummary": "Setup inicial:\n- Mundo: Cidade moderna comum, rotina de trabalho, relacoes pessoais, problemas financeiros, transito, bairros vivos e tensoes cotidianas.\n- Protagonista: Roberto Carlos\n- Papel: Pessoa comum tentando equilibrar trabalho, familia, contas e escolhas que comecam a sair do controle.\n- Tracos: Empatica, cansada, observadora, teimosa quando pressionada, boa em esconder o que sente.\n- Objetivo inicial: Atravessar uma semana decisiva sem perder emprego, relacionamento e uma chance inesperada de mudar de vida.\n\nMarcos da campanha:\n- Mestre: A noite, 31 de dezembro de 2022. A cidade está em pânico. Bomba explodiu na esquina da rua, incendiando um edifício de apartamentos no meio do tráfego, os sinos das igrejas estão...\n- Jogador (acao): Roberto Carlos se levanta, e sai do prédio, para ver como estão as ruas, com cautela\n- Mestre: - Seus olhos deslizam através das cinzas, buscando a luz do farol da cidade, a única chama de esperança no meio do abismo, em direção ao porto seguro que fica a 30 minutos de dist...",
+    "recentSummary": "- Mestre: A noite, 31 de dezembro de 2022. A cidade está em pânico. Bomba explodiu na esquina da rua, incendiando um edifício de apartamentos no meio do tráfego, os sinos das igrejas estão...\n- Jogador (acao): Roberto Carlos se levanta, e sai do prédio, para ver como estão as ruas, com cautela\n- Mestre: - Seus olhos deslizam através das cinzas, buscando a luz do farol da cidade, a única chama de esperança no meio do abismo, em direção ao porto seguro que fica a 30 minutos de dist...",
+    "updatedAt": "2026-04-21T18:51:50.396Z"
+  },
+  "turns": [
+    {
+      "id": "78739e80-e268-4017-be62-c4d4a112a493",
+      "role": "assistant",
+      "content": "A noite, 31 de dezembro de 2022. A cidade está em pânico. Bomba explodiu na esquina da rua, incendiando um edifício de apartamentos no meio do tráfego, os sinos das igrejas estão queimando, e o ar é carregado de chamas e gases tóxicos.\n\nRoberto Carlos se acorda, desesperado, em um apartamento desocupado, acorda ao meio da noite, com o som de sirenes e explosões no fundo, desesperado, com apenas algumas luas de luz que se destacam entre as nuvens. O silêncio é perturbador, apenas o estrido do coração de seu bebê, que ainda dorme em sua cama, o único símbolo de paz na tumulta. Ele está a apenas 20 minutos do aniversário, o que significa que o dia está prestes para chegar, e as palavras de sua mãe, \"Vivamos, ou morramos, em paz\", vão se tornar realidade. Os ecos de sua infância estão na mente, as palavras \"Não, não, não, não!\" ecoando como uma mantra, enquanto a porta se fecha, e a porta do tempo se fecha para sempre para sempre",
+      "createdAt": "2026-04-21T18:15:55.584Z"
+    },
+    {
+      "id": "da86d4f3-6b65-47a9-8242-e12494972624",
+      "role": "user",
+      "content": "Roberto Carlos se levanta, e sai do prédio, para ver como estão as ruas, com cautela",
+      "inputMode": "action",
+      "createdAt": "2026-04-21T18:50:09.087Z"
+    },
+    {
+      "id": "0b44fe8c-638a-4c5e-b2c3-d0a643f7899a",
+      "role": "assistant",
+      "content": "- Seus olhos deslizam através das cinzas, buscando a luz do farol da cidade, a única chama de esperança no meio do abismo, em direção ao porto seguro que fica a 30 minutos de distância.\n\nUm vento gelado raspa pela cara, envolve-se-lhe uma névoa, e uma luz tenue em um barro,\n\nOs olhos piscando, vagos, como velas no escuro,\n\nA passagem do tempo se transformou,\n\nO tempo se torna lento,\n\nA noite pesada, com o correr das horas,\n\nUm momento chave,\n\nOs gritos do futuro, de um único toque,\n\nUm abalo, um batimento no tímpão,\n\nOs ventos se tornam gêmeos,\n\nA noite caindo, a noite se transforma-se em dia,\n\nUm grito,\n\nO relógio marca meia-noite, a hora do fim,\n\nUm momento para fugir,\n\nUm momento para viver,\n\nUm momento para salvar,\n\nUm momento para ir,\n\nUm momento para deixar tudo de parte,\n\nUm momento para morrer,\n\nUm momento",
+      "createdAt": "2026-04-21T18:51:50.394Z"
+    }
+  ],
+  "createdAt": "2026-04-21T18:14:44.661Z",
+  "updatedAt": "2026-04-21T18:51:50.396Z"
+}
